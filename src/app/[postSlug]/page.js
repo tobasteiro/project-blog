@@ -14,6 +14,10 @@ const DivisionGroupsDemo = dynamic(() =>
   import("@/components/DivisionGroupsDemo")
 );
 
+const CircularColorsDemo = dynamic(() =>
+  import("@/components/CircularColorsDemo")
+);
+
 export const getBlogPostData = React.cache(
   async (slug) => await loadBlogPost(slug)
 );
@@ -41,7 +45,7 @@ async function BlogPost({ params }) {
       <div className={styles.page}>
         <MDXRemote
           source={addedSnippets}
-          components={{ CodeSnippet, DivisionGroupsDemo }}
+          components={{ CodeSnippet, DivisionGroupsDemo, CircularColorsDemo }}
         />
       </div>
     </article>
