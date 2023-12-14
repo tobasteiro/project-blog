@@ -1,5 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
 
 import BlogHero from "@/components/BlogHero";
 
@@ -18,9 +19,13 @@ const CircularColorsDemo = dynamic(() =>
   import("@/components/CircularColorsDemo")
 );
 
-export const getBlogPostData = React.cache(
-  async (slug) => await loadBlogPost(slug)
-);
+export const getBlogPostData = React.cache(async (slug) => {
+  try {
+    return await loadBlogPost(slug);
+  } catch (error) {
+    notFound();
+  }
+});
 
 export async function generateMetadata({ params }) {
   const file = await getBlogPostData(params.postSlug);
